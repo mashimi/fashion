@@ -1,0 +1,97 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Styling Assistance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .app {
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .btn {
+            border: 2px solid gray;
+            color: gray;
+            background-color: white;
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+        #image-preview {
+            max-width: 100%;
+            margin-top: 20px;
+            display: none;
+        }
+        #suggestions {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="upload-section">
+            <h2>Fashion Styling Assistance</h2>
+            <div class="upload-btn-wrapper">
+                <button class="btn">Upload Photo</button>
+                <input type="file" name="photo" id="fileInput" onchange="previewImage();"/>
+            </div>
+            <img id="image-preview" src="" alt="Image Preview">
+            <div id="suggestions">
+                <h3>Fashion Suggestions:</h3>
+                <p>Mock suggestion 1</p>
+                <p>Mock suggestion 2</p>
+                <p>Mock suggestion 3</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage() {
+            const fileInput = document.getElementById('fileInput');
+            const imagePreview = document.getElementById('image-preview');
+            const suggestions = document.getElementById('suggestions');
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+                suggestions.style.display = 'block';
+            }
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
+
+
